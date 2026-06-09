@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAPAN TOURS — 10-Day Curated Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ============ CSS RESET & VARIABLES ============ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --mist-black: #0A0A0A;
+      --mountain-cream: #F5E8D3;
+      --kimono-white: #FAFAFA;
+      --lime-accent: #D4F87A;
+      --sakura-pink: #FFB7C5;
+      --mouse-gray: #888888;
+      --glass-border: rgba(255,255,255,0.1);
+      --ease-exhaled: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--mist-black);
+      color: var(--kimono-white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    * {
+      cursor: none !important;
+    }
+
+    ::selection {
+      background: var(--lime-accent);
+      color: var(--mist-black);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--mist-black);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--mouse-gray);
+      border-radius: 3px;
+    }
+
+    /* ============ TYPOGRAPHY ============ */
+    .text-display {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 0.85;
+    }
+
+    .text-editorial {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .text-small-caps {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+    }
+
+    /* ============ UTILITIES ============ */
+    .hairline {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .glass-panel-strong {
+      background: rgba(20, 20, 20, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+    }
+
+    .form-underline {
+      position: relative;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: border-color 0.3s ease;
+      width: 100%;
+      padding: 12px 0;
+      color: var(--kimono-white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-underline::placeholder {
+      color: rgba(250, 250, 250, 0.3);
+    }
+
+    .form-underline:focus {
+      border-bottom-color: var(--lime-accent);
+    }
+
+    textarea.form-underline {
+      resize: none;
+    }
+
+    .video-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.2) 0%,
+        rgba(10, 10, 10, 0.1) 50%,
+        rgba(10, 10, 10, 0.6) 100%
+      );
+    }
+
+    .polaroid-shadow {
+      box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.3),
+        0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    /* ============ CUSTOM CURSOR ============ */
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transition: transform 0.15s ease-out;
+    }
+
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--kimono-white);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s var(--ease-exhaled), height 0.3s var(--ease-exhaled), 
+                  background 0.3s var(--ease-exhaled), border 0.3s var(--ease-exhaled);
+    }
+
+    .custom-cursor.hovering .cursor-dot {
+      width: 48px;
+      height: 48px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      mix-blend-mode: difference;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--kimono-white);
+      text-decoration: none;
+    }
+
+    .nav-logo svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.5;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      position: relative;
+      text-decoration: none;
+      color: rgba(250, 250, 250, 0.8);
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--kimono-white);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--kimono-white);
+      transition: width 0.3s var(--ease-exhaled);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-book {
+      padding: 8px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 9999px;
+      color: rgba(250, 250, 250, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-book:hover {
+      border-color: var(--kimono-white);
+      color: var(--kimono-white);
+    }
+
+    .nav-socials {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-left: 16px;
+    }
+
+    .nav-socials a {
+      color: rgba(250, 250, 250, 0.3);
+      transition: color 0.3s ease;
+    }
+
+    .nav-socials a:hover {
+      color: rgba(250, 250, 250, 0.7);
+    }
+
+    .nav-socials svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.5;
+    }
+
+    /* ============ HERO SECTION ============ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      background: var(--mist-black);
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 2; /* sits IN FRONT of typography */
+      will-change: transform;
+    }
+
+    .hero-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* This overlay masks the bottom 55% of the video so the landscape "ground"
+       blends into the page, while the top sky area stays transparent — 
+       allowing the JAPAN letterforms to peek above the mountains */
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.0) 0%,   /* sky: transparent so JAPAN shows through */
+        rgba(10,10,10,0.0) 38%,  /* mountain peaks start ~38% from top */
+        rgba(10,10,10,0.0) 45%,  /* mountains mid */
+        rgba(10,10,10,0.75) 85%,
+        rgba(10,10,10,0.95) 100%
+      );
+    }
+
+    /* Foreground mask: covers the lower portion of the JAPAN text so it appears
+       tucked BEHIND the landscape. The video (z-index:2) sits above the text (z-index:1),
+       and this gradient on the overlay makes the bottom of the video blend away. */
+    .hero-video-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* Only show the video from 40% down — above that, let the JAPAN text show through */
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 35%, black 55%, black 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, transparent 35%, black 55%, black 100%);
+      background: var(--mist-black);
+      pointer-events: none;
+    }
+
+    .hero-typography {
+      position: absolute;
+      inset: 0;
+      z-index: 1; /* BEHIND the video layer */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .hero-typography h1 {
+      font-size: 18vw;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(245, 232, 211, 0.5);
+      text-shadow: 0 0 120px rgba(245, 232, 211, 0.15), 0 0 40px rgba(245, 232, 211, 0.08);
+      user-select: none;
+      /* Nudge text upward so the top 40-50% of letterforms sit above the mountain line */
+      margin-top: -8vh;
+    }
+
+    .hero-figure {
+      position: absolute;
+      bottom: 0;
+      right: 48px;
+      z-index: 5; /* highest z-index in hero — foreground anchor */
+      height: 80vh;
+      width: auto;
+    }
+
+    .hero-figure img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      object-position: bottom;
+      opacity: 0.9;
+      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    }
+
+    .hero-figure .blossom-branch {
+      position: absolute;
+      right: -32px;
+      top: 0;
+      height: 100%;
+      width: 128px;
+      pointer-events: none;
+    }
+
+    .hero-figure .blossom-branch img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      -webkit-mask-image: linear-gradient(to left, black 0%, transparent 100%);
+      mask-image: linear-gradient(to left, black 0%, transparent 100%);
+    }
+
+    /* Polaroid Strip */
+    .polaroid-strip {
+      position: absolute;
+      bottom: 96px;
+      left: 48px;
+      z-index: 10;
+      display: flex;
+      gap: 16px;
+    }
+
+    .polaroid-card {
+      position: relative;
+      flex-shrink: 0;
+      width: 160px;
+      aspect-ratio: 3/4;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--mist-black);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .polaroid-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 
+        0 20px 40px rgba(255, 184, 197, 0.2),
+        0 4px 6px -1px rgba(0, 0, 0, 0.3),
+        0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .polaroid-card video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .polaroid-card .glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(212, 248, 122, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .polaroid-card:hover .glow {
+      opacity: 1;
+    }
+
+    .polaroid-card .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    }
+
+    .polaroid-card .caption span {
+      font-size: 10px;
+      color: var(--mouse-gray);
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero Book Button */
+    .hero-book-btn {
+      position: absolute;
+      bottom: 96px;
+      right: 128px;
+      z-index: 10;
+      padding: 16px 32px;
+      background: rgba(245, 232, 211, 0.9);
+      backdrop-filter: blur(12px);
+      border-radius: 8px;
+      color: var(--mist-black);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: background 0.5s ease, transform 0.2s ease;
+    }
+
+    .hero-book-btn:hover {
+      background: var(--lime-accent);
+      transform: scale(1.02);
+    }
+
+    /* ============ ABOUT SECTION ============ */
+    .about-section {
+      background: var(--mist-black);
+      padding: 96px 48px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 96px;
+    }
+
+    .section-heading .hairline {
+      flex: 1;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--kimono-white);
+      white-space: nowrap;
+    }
+
+    .about-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+    }
+
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .about-text p {
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+      color: rgba(250, 250, 250, 0.8);
+    }
+
+    .highlight-text {
+      color: rgba(250, 250, 250, 0.6);
+      transition: color 0.8s var(--ease-exhaled);
+    }
+
+    .highlight-text.active {
+      color: var(--lime-accent);
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 3px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .timeline-node {
+      position: relative;
+      padding-left: 48px;
+      padding-bottom: 64px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s var(--ease-exhaled), transform 0.6s var(--ease-exhaled);
+    }
+
+    .timeline-node.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-node:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--kimono-white);
+    }
+
+    .timeline-label {
+      margin-bottom: 16px;
+    }
+
+    .timeline-label .days {
+      font-size: 12px;
+      color: var(--mouse-gray);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .timeline-label .city {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--kimono-white);
+      line-height: 1;
+    }
+
+    .photo-cluster {
+      position: relative;
+      height: 220px;
+      max-width: 320px;
+    }
+
+    .photo-cluster .photo {
+      position: absolute;
+      width: 176px;
+      aspect-ratio: 4/3;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s var(--ease-exhaled);
+    }
+
+    .photo-cluster .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-cluster:hover .photo:first-child {
+      transform: rotate(-4deg) translateX(-10px);
+    }
+
+    .photo-cluster:hover .photo:last-child {
+      transform: rotate(4deg) translateX(10px);
+    }
+
+    /* ============ WHAT'S INCLUDED ============ */
+    .included-section {
+      background: var(--mist-black);
+      padding: 96px 48px;
+    }
+
+    .included-heading {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 96px;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .included-heading h2 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--kimono-white);
+      white-space: nowrap;
+    }
+
+    .included-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .included-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 12px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-exhaled), border-color 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .included-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .included-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 248, 122, 0.3);
+    }
+
+    .included-card .card-glow {
+      position: absolute;
+      inset: 0;
+      background: rgba(212, 248, 122, 0.05);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .included-card:hover .card-glow {
+      opacity: 1;
+    }
+
+    .included-card .icon {
+      color: var(--lime-accent);
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .included-card:hover .icon {
+      transform: scale(1.1);
+    }
+
+    .included-card .icon svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 1.5;
+    }
+
+    .included-card h3 {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--kimono-white);
+      margin-bottom: 12px;
+    }
+
+    .included-card p {
+      font-size: 14px;
+      color: rgba(250, 250, 250, 0.7);
+      line-height: 1.6;
+    }
+
+    /* ============ CONTACT SECTION ============ */
+    .contact-section {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-video-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .contact-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .contact-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.3) 50%, transparent 100%);
+    }
+
+    .contact-form-wrapper {
+      position: relative;
+      z-index: 10;
+      padding: 48px 48px;
+    }
+
+    .contact-form {
+      background: rgba(20, 20, 20, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-radius: 16px;
+      padding: 48px;
+      max-width: 440px;
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s var(--ease-exhaled), transform 0.8s var(--ease-exhaled);
+    }
+
+    .contact-form.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .contact-form h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--kimono-white);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .contact-form .subtitle {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mouse-gray);
+      margin-bottom: 32px;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 16px;
+      background: var(--mountain-cream);
+      color: var(--mist-black);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      border: none;
+      border-radius: 9999px;
+      transition: background 0.5s ease, transform 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .contact-form button:hover {
+      background: var(--lime-accent);
+      transform: scale(1.02);
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--mist-black);
+      padding: 32px 48px;
+    }
+
+    .footer-hairline {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+      margin-bottom: 32px;
+    }
+
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(250, 250, 250, 0.6);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-logo:hover {
+      color: var(--kimono-white);
+    }
+
+    .footer-logo svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.5;
+    }
+
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .footer-nav a {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 250, 0.5);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+      color: var(--kimono-white);
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-socials a {
+      color: rgba(250, 250, 250, 0.3);
+      transition: color 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      color: rgba(250, 250, 250, 0.7);
+    }
+
+    .footer-socials svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.5;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1024px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .included-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-figure {
+        right: 0;
+        height: 60vh;
+      }
+
+      .hero-typography h1 {
+        font-size: 22vw;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-socials {
+        display: none;
+      }
+
+      .hero-book-btn {
+        right: 24px;
+        bottom: 180px;
+      }
+
+      .polaroid-strip {
+        left: 24px;
+        bottom: 180px;
+        gap: 8px;
+      }
+
+      .polaroid-card {
+        width: 100px;
+      }
+
+      .about-section,
+      .included-section {
+        padding: 64px 24px;
+      }
+
+      .included-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form-wrapper {
+        padding: 24px;
+        width: 100%;
+      }
+
+      .contact-form {
+        max-width: 100%;
+        padding: 32px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .footer-nav {
+        gap: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="custom-cursor" id="cursor">
+    <div class="cursor-dot"></div>
+  </div>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span class="text-small-caps">JAPAN TOURS</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#about" class="nav-link text-small-caps">About</a>
+      <a href="#included" class="nav-link text-small-caps">Included</a>
+      <a href="#contact" class="nav-link text-small-caps">Contacts</a>
+    </div>
+
+    <div style="display: flex; align-items: center;">
+      <a href="#contact" class="nav-book text-small-caps">Book</a>
+      <div class="nav-socials">
+        <a href="#" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Telegram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="hero" id="hero">
+    <!-- Background Video -->
+    <div class="hero-video-bg">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="https://videos.pexels.com/video-files/31386838/31386838-uhd_2560_1440_30fps.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
+
+    <!-- Typography -->
+    <div class="hero-typography">
+      <h1 class="text-display">JAPAN</h1>
+    </div>
+
+    <!-- Kimono Figure -->
+    <div class="hero-figure">
+      <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=600&h=900&fit=crop" alt="Woman in kimono gazing at the valley">
+      <div class="blossom-branch">
+        <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=300&h=500&fit=crop" alt="Cherry blossom branch">
+      </div>
+    </div>
+
+    <!-- Polaroid Strip -->
+    <div class="polaroid-strip">
+      <div class="polaroid-card polaroid-shadow" data-cursor-hover>
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="https://videos.pexels.com/video-files/3141207/3141207-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        </video>
+        <div class="glow"></div>
+        <div class="caption"><span>3 cities in Japan</span></div>
+      </div>
+      <div class="polaroid-card polaroid-shadow" data-cursor-hover>
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="https://videos.pexels.com/video-files/3141207/3141207-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        </video>
+        <div class="glow"></div>
+        <div class="caption"><span>10 days</span></div>
+      </div>
+      <div class="polaroid-card polaroid-shadow" data-cursor-hover>
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="https://videos.pexels.com/video-files/3141207/3141207-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        </video>
+        <div class="glow"></div>
+        <div class="caption"><span>gigabytes of photos</span></div>
+      </div>
+      <div class="polaroid-card polaroid-shadow" data-cursor-hover>
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="https://videos.pexels.com/video-files/3141207/3141207-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        </video>
+        <div class="glow"></div>
+        <div class="caption"><span>eat ramen</span></div>
+      </div>
+      <div class="polaroid-card polaroid-shadow" data-cursor-hover>
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="https://videos.pexels.com/video-files/3141207/3141207-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        </video>
+        <div class="glow"></div>
+        <div class="caption"><span>enjoy the vibe</span></div>
+      </div>
+    </div>
+
+    <!-- Book Button -->
+    <a href="#contact" class="hero-book-btn" data-cursor-hover>Book</a>
+  </section>
+
+  <!-- ============ ABOUT SECTION ============ -->
+  <section class="about-section" id="about">
+    <div class="section-heading">
+      <div class="hairline"></div>
+      <h2 class="text-display">ABOUT THE TOUR</h2>
+      <div class="hairline"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="text-editorial">
+          We've planned a simple and convenient 10-day itinerary for your trip to Japan. You'll visit three cities: <span class="highlight-text" data-highlight>Osaka, Kyoto, and Tokyo</span>.
+        </p>
+        <p class="text-editorial">
+          No need to worry about routes, schedules, or finding places — everything is already organized. We'll show you where to go, what to see, and where to eat, so you can simply <span class="highlight-text" data-highlight>enjoy the journey</span>.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-node" data-reveal>
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">
+            <span class="days">Days 1–3</span>
+            <span class="city text-display">Osaka</span>
+          </div>
+          <div class="photo-cluster" data-cursor-hover>
+            <div class="photo" style="top: 0; left: 0; transform: rotate(-3deg); z-index: 1;">
+              <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=400&h=300&fit=crop" alt="Osaka Castle" loading="lazy">
+            </div>
+            <div class="photo" style="top: 20px; left: 40px; transform: rotate(-1deg); z-index: 2;">
+              <img src="https://images.unsplash.com/photo-1590559899731-a382839e5549?w=400&h=300&fit=crop" alt="Osaka Skyline" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-node" data-reveal>
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">
+            <span class="days">Days 4–6</span>
+            <span class="city text-display">Kyoto</span>
+          </div>
+          <div class="photo-cluster" data-cursor-hover>
+            <div class="photo" style="top: 0; left: 0; transform: rotate(1deg); z-index: 1;">
+              <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&h=300&fit=crop" alt="Kyoto Pagoda" loading="lazy">
+            </div>
+            <div class="photo" style="top: 20px; left: 40px; transform: rotate(3deg); z-index: 2;">
+              <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&h=300&fit=crop" alt="Kyoto Shrine" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-node" data-reveal>
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">
+            <span class="days">Days 7–10</span>
+            <span class="city text-display">Tokyo</span>
+          </div>
+          <div class="photo-cluster" data-cursor-hover>
+            <div class="photo" style="top: 0; left: 0; transform: rotate(-2deg); z-index: 1;">
+              <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=300&fit=crop" alt="Tokyo Shibuya" loading="lazy">
+            </div>
+            <div class="photo" style="top: 20px; left: 40px; transform: rotate(0deg); z-index: 2;">
+              <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=400&h=300&fit=crop" alt="Tokyo Street" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT'S INCLUDED ============ -->
+  <section class="included-section" id="included">
+    <div class="included-heading">
+      <h2 class="text-display">WHAT'S INCLUDED</h2>
+      <div class="hairline" style="flex: 1;"></div>
+    </div>
+
+    <div class="included-grid">
+      <div class="included-card" data-reveal-card>
+        <div class="card-glow"></div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="text-small-caps">Guides</h3>
+        <p>2 awesome guides who know everything about Japan!</p>
+      </div>
+
+      <div class="included-card" data-reveal-card>
+        <div class="card-glow"></div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16h20"/><path d="M2 20h20"/><path d="M2 12h20"/><path d="M2 8h20"/><path d="M2 4h20"/><path d="M12 2v20"/></svg>
+        </div>
+        <h3 class="text-small-caps">Flights</h3>
+        <p>Routes: Moscow — Osaka, Tokyo — Moscow</p>
+      </div>
+
+      <div class="included-card" data-reveal-card>
+        <div class="card-glow"></div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3 class="text-small-caps">Transfers</h3>
+        <p>From the airport to the hotels</p>
+      </div>
+
+      <div class="included-card" data-reveal-card>
+        <div class="card-glow"></div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/><path d="M9 16h6"/><path d="M12 12v8"/><path d="M8 2v4"/><path d="M16 2v4"/></svg>
+        </div>
+        <h3 class="text-small-caps">Hotels</h3>
+        <p>Comfortable accommodation, 2 people per room (breakfasts included)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT SECTION ============ -->
+  <section class="contact-section" id="contact">
+    <div class="contact-video-bg">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="https://cdn.pixabay.com/video/2024/10/18/237659_large.mp4" type="video/mp4">
+      </video>
+      <div class="contact-video-overlay"></div>
+    </div>
+
+    <div class="contact-form-wrapper">
+      <div class="contact-form" data-reveal-form>
+        <h2>Want to join us, but still have questions?</h2>
+        <p class="subtitle">Leave a request</p>
+
+        <form>
+          <input type="text" placeholder="Your name" class="form-underline">
+          <input type="tel" placeholder="Phone number" class="form-underline">
+          <textarea placeholder="Comment" rows="3" class="form-underline"></textarea>
+          <button type="submit" data-cursor-hover>Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-hairline"></div>
+    <div class="footer-content">
+      <a href="#" class="footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="text-small-caps">JAPAN TOURS</span>
+      </a>
+
+      <nav class="footer-nav">
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#included">Included</a>
+        <a href="#contact">Contacts</a>
+      </nav>
+
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Telegram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // ============ CUSTOM CURSOR ============
+    const cursor = document.getElementById('cursor');
+    let mouseX = -100, mouseY = -100;
+    let cursorX = -100, cursorY = -100;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Cursor hover detection
+    document.addEventListener('mouseover', (e) => {
+      const target = e.target;
+      if (target.closest('a') || target.closest('button') || target.closest('[data-cursor-hover]')) {
+        cursor.classList.add('hovering');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const target = e.target;
+      if (target.closest('a') || target.closest('button') || target.closest('[data-cursor-hover]')) {
+        cursor.classList.remove('hovering');
+      }
+    });
+
+    // ============ SMOOTH SCROLL ============
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ============ SCROLL REVEAL ANIMATIONS ============
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-20px' });
+
+    // Timeline nodes — stagger: Osaka 0ms, Kyoto 200ms, Tokyo 400ms
+    const timelineNodes = document.querySelectorAll('[data-reveal]');
+    timelineNodes.forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.2}s`;
+      revealObserver.observe(el);
+    });
+
+    // Included cards
+    document.querySelectorAll('[data-reveal-card]').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.1}s`;
+      revealObserver.observe(el);
+    });
+
+    // Contact form
+    document.querySelectorAll('[data-reveal-form]').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ============ HIGHLIGHT TEXT ON SCROLL ============
+    const highlightObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-highlight]').forEach(el => {
+      highlightObserver.observe(el);
+    });
+
+    // ============ HERO PARALLAX ============
+    const hero = document.querySelector('.hero');
+    const heroVideo = document.querySelector('.hero-video-bg');
+    const heroText = document.querySelector('.hero-typography');
+    const polaroidStrip = document.querySelector('.polaroid-strip');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const heroHeight = hero.offsetHeight;
+
+      if (scrollY < heroHeight) {
+        const progress = scrollY / heroHeight;
+        heroVideo.style.transform = `translateY(${scrollY * 0.3}px)`;
+        heroText.style.transform = `translateY(${scrollY * 0.5}px)`;
+        polaroidStrip.style.transform = `translateX(${-scrollY * 0.4}px)`;
+      }
+    });
+
+    // ============ POLAROID VIDEO SPEED ============
+    document.querySelectorAll('.polaroid-card').forEach(card => {
+      const video = card.querySelector('video');
+      if (video) {
+        video.playbackRate = 0.4;
+        card.addEventListener('mouseenter', () => { video.playbackRate = 1.0; });
+        card.addEventListener('mouseleave', () => { video.playbackRate = 0.4; });
+      }
+    });
+
+    // ============ LENIS SMOOTH SCROLL (Lightweight Alternative) ============
+    // Using native smooth scroll with custom easing feel
+    let lastScrollY = window.scrollY;
+    let targetScrollY = window.scrollY;
+    let scrollVelocity = 0;
+
+    // This adds a subtle "weight" to scrolling without heavy library
+    function smoothScrollLoop() {
+      const diff = targetScrollY - lastScrollY;
+      if (Math.abs(diff) > 0.5) {
+        scrollVelocity = diff * 0.1;
+        lastScrollY += scrollVelocity;
+        // We don't override native scroll, just use it for parallax calculations
+      }
+      requestAnimationFrame(smoothScrollLoop);
+    }
+    smoothScrollLoop();
+  </script>
+
+</body>
+</html>
